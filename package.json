@@ -2,6 +2,7 @@
   "name": "ai-pr-reviewer",
   "version": "0.1.0",
   "description": "GitHub PR reviewer powered by Claude. Configurable rules, structured findings, eval harness.",
+  "homepage": "https://github.com/probot/probot",
   "type": "module",
   "license": "MIT",
   "engines": {

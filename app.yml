@@ -1,0 +1,34 @@
+# GitHub App manifest, read by Probot during the registration flow.
+# This pre-fills the new App's name, description, permissions, and events
+# so you don't configure them by hand. The `url` field is required by GitHub.
+#
+# Probot substitutes the running server URL where needed; the values here are
+# what GitHub stores on the App's settings page.
+
+name: ai-pr-reviewer
+
+# Required by GitHub's manifest schema. This is the App's public homepage —
+# purely informational. Replace with your repo URL once it's pushed.
+url: https://github.com/probot/probot
+
+description: >
+  AI-powered pull request reviewer. Reviews opened and updated PRs using
+  Claude, posting a summary, inline comments with suggested fixes, and a
+  commit status that flags critical issues. Configurable per-repo via
+  .aireview.yml.
+
+# Whether other accounts can install the App. Keep false for a personal dev App.
+public: false
+
+default_permissions:
+  # Read PR metadata and diffs; write reviews and comments.
+  pull_requests: write
+  # Read file contents (to load .aireview.yml).
+  contents: read
+  # Write commit statuses (to gate merges).
+  statuses: write
+  # Read repo metadata (auto-granted, listed for clarity).
+  metadata: read
+
+default_events:
+  - pull_request
