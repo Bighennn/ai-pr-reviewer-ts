@@ -1,0 +1,23 @@
+# Secrets
+.env
+*.pem
+*.private-key.pem
+
+# Build
+dist/
+*.tsbuildinfo
+
+# Dependencies
+node_modules/
+
+# Test / coverage
+coverage/
+
+# Editors
+.vscode/
+.idea/
+*.swp
+.DS_Store
+
+# Eval outputs
+evals/results/

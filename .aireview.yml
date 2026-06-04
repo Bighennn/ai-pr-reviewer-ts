@@ -1,0 +1,43 @@
+# Example .aireview.yml — drop this at the root of any repo where you've
+# installed the AI PR Reviewer to customize its behavior. All fields optional.
+
+# Override the default model for tougher reviews on critical repos.
+# model: claude-opus-4-7
+
+# Drop findings below this severity before posting.
+severityThreshold: low
+
+# Findings at or above this severity set a failing commit status, which
+# (with branch protection) blocks the merge.
+blockOn: critical
+
+# Glob patterns; matching files are skipped. ** = any path segments.
+ignorePaths:
+  - "**/node_modules/**"
+  - "**/vendor/**"
+  - "**/*.lock"
+  - "**/dist/**"
+  - "**/*.min.js"
+  - "**/__snapshots__/**"
+
+# Custom rules injected into the system prompt.
+rules:
+  - name: no-console-log
+    prompt: >
+      Flag console.log/console.debug added to non-test source files.
+      These are usually leftover debugging.
+    severity: low
+
+  - name: no-todo-without-issue
+    prompt: >
+      Flag TODO/FIXME/HACK comments that don't reference an issue number
+      (e.g. "TODO(#123): ..."). Untracked TODOs rot.
+    severity: low
+
+  - name: no-floating-promises
+    prompt: >
+      Flag async calls whose promises are not awaited or .catch()-handled.
+      These swallow errors and create race conditions.
+    severity: high
+
+maxFilesPerReview: 30
