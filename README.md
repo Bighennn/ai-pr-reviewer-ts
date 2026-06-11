@@ -117,3 +117,7 @@ parse-diff, yaml. Tooling: vitest, eslint, prettier, tsx. Deploy: Docker.
 ## License
 
 MIT
+
+function add(a, b) {
+  return a - b;
+}
